@@ -111,6 +111,8 @@ body {
 	border: none;
 	width: 70%;
 	padding-left: 2px;
+	white-space: pre-wrap;
+	word-break: break-all;
 }
 
 .title, .category, .desc, .location, .openChatLink, .openChatPw{
@@ -207,10 +209,6 @@ body {
 
 .rightImg{
 	right: 0;
-}
-
-.descTextDetail{
-	white-space: pre-wrap;
 }
 
 .updateDiv[contenteditable="true"]{

@@ -129,6 +129,8 @@ public class MembersController {
 						}
 					}catch(Exception e) {
 						e.printStackTrace();
+						rttr.addFlashAttribute("lmsg", "loginFail");
+						return "redirect:/members/loginUi";
 					}
 				}
 			}
