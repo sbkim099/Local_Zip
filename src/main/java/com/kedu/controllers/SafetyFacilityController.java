@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kedu.dao.SafetyFacilityDAO;
 import com.kedu.dto.SafetyFacilityDTO;
-import com.kedu.service.SafetyFacilityService;
 
 @Controller
 @RequestMapping("/map")
 public class SafetyFacilityController {
 	
 	@Autowired
-	private SafetyFacilityService service;
+	private SafetyFacilityDAO dao;
 	
 	@RequestMapping("/test") // 지도 jsp로 이동
 	public String test() throws Exception{
@@ -26,33 +26,30 @@ public class SafetyFacilityController {
 	@ResponseBody
 	@RequestMapping("/getFacilities") // 지도 출력
 	public List<SafetyFacilityDTO> getFacilities(){
-		return service.getAllFacilities();
+		return dao.selectAll();
 	}
 	
 	@RequestMapping("/saveToiletData") // 공중화장실 DB 저장
 	public String saveToiletData() throws Exception{
-		int result = service.saveToiletData();
-		
+		dao.saveToiletData();
 		return "map/map";
 	}
 	
 	@RequestMapping("/savePoliceData") // 치안 DB 저장
 	public String savePoliceData() throws Exception{
-		int result = service.savePoliceData();
-		
+		dao.savePoliceData();
 		return "map/map";
 	}
 	
 	@RequestMapping("/updatePoliceLatLng") // 치안 경도/위도 DB 업데이트
 	public String updatePoliceLatLng() throws Exception{
-	    int result = service.updatePoliceLatLng();
+	    dao.updatePoliceLatLng();
 	    return "map/map";
 	}
 	
 	@RequestMapping("/saveShelterData") // 대피소 DB 저장
 	public String saveShelterData() throws Exception{
-		int result = service.saveShelterData();
-		
+		dao.saveShelterData();
 		return "map/map";
 	}
 	@ExceptionHandler(Exception.class)
