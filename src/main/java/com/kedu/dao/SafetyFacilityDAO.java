@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -35,10 +36,18 @@ public class SafetyFacilityDAO {
 
 	@Autowired
 	private RestTemplate restTemplate;
-
+	
+	@Value("${data.toilet.police.api.service-key}")
+	private String apiKey;
+	
+	@Value("${data.shelter.api.service-key}")
+	private String shelterKey;
+	
+	@Value("${data.kakao.api-key}")
+	private String kakaoKey;
+	
 
 	// 대피소
-	private final String SERVICE_KEY_SHELTER = "515452634f776a643735444c725564";
 	public int saveShelterData() {
 		int count = 0;
 
@@ -51,7 +60,7 @@ public class SafetyFacilityDAO {
 			while (true) {
 
 				String url = "http://openapi.seoul.go.kr:8088/"
-						+ SERVICE_KEY_SHELTER
+						+ shelterKey
 						+ "/json/TlEtqkP/"
 						+ start + "/" + end;
 
@@ -96,7 +105,6 @@ public class SafetyFacilityDAO {
 	}
 
 	// 공중화장실
-	private final String SERVICE_KEY = "3f7cf2f9619b457587f2badf959dcf25ccb7f35296e133ec36cdd5df068a94c5";
 	public int saveToiletData() {
 		int count = 0;
 
@@ -108,7 +116,7 @@ public class SafetyFacilityDAO {
 
 			while(true) {
 				String url = "https://apis.data.go.kr/1741000/public_restroom_info/info"
-						+ "?serviceKey=" + SERVICE_KEY
+						+ "?serviceKey=" + apiKey
 						+ "&pageNo=" + pageNo
 						+ "&numOfRows=" + numOfRows
 						+ "&type=json";
@@ -178,7 +186,7 @@ public class SafetyFacilityDAO {
 
 			while (true) {
 				String url = "https://api.odcloud.kr/api/15076962/v1/uddi:8ba698ca-b192-4fb7-99f7-e60903af03d0"
-						+ "?serviceKey=" + SERVICE_KEY
+						+ "?serviceKey=" + apiKey
 						+ "&page=" + pageNo
 						+ "&perPage=" + numOfRows;
 
@@ -222,8 +230,6 @@ public class SafetyFacilityDAO {
 	}
 
 	// 치안시설 위도,경도 업데이트
-	private final String KAKAO_REST_API_KEY = "9b13c2ea8c18a1379ea7c45013873362";
-
 	public int updatePoliceLatLng() {
 		int count = 0;
 
@@ -238,7 +244,7 @@ public class SafetyFacilityDAO {
 				String url = "https://dapi.kakao.com/v2/local/search/address.json?query=" + encodedAddr;
 
 				HttpHeaders headers = new HttpHeaders();
-				headers.set("Authorization", "KakaoAK " + KAKAO_REST_API_KEY);
+				headers.set("Authorization", "KakaoAK " + kakaoKey);
 				HttpEntity<String> entity = new HttpEntity<>(headers);
 
 				ResponseEntity<KakaoAddressDTO> response = 

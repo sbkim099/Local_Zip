@@ -158,4 +158,7 @@ $RECYCLE.BIN/
 # 이메일 보안 설정 파일 제외
 src/main/resources/email.properties
 
+# 공공데이터 및 카카오 API 키 설정 파일 제외
+src/main/resources/application.properties
+
 # End of https://www.toptal.com/developers/gitignore/api/java,windows,maven,git,eclipse
