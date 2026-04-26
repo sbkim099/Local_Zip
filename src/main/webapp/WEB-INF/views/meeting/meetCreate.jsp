@@ -390,6 +390,7 @@ textarea{
 </form>
 		
 		<script>
+		
 		// 활동 지역 주소 설정
 		let searchBtn = document.getElementsByClassName("searchBtn")[0];
 		
@@ -432,7 +433,10 @@ textarea{
 			let detail = document.getElementById("detail").value;
 			let address = document.getElementById("address").value;
 			let link = document.getElementById("link").value;
+			let linkInput = document.getElementById("link");
 			let pw = document.getElementById("pw").value;
+			
+			let regex = /^https:\/\/open\.kakao\.com\/o\/[a-zA-Z0-9]+$/;
 			
 			if(title == ""){
 				Swal.fire({
@@ -497,7 +501,18 @@ textarea{
 					confirmButtonColor: "#FFB300"
 				});
 				return false;
-			} else if(pw == "") {
+			}else if(!regex.test(link)){
+				Swal.fire({
+					icon: "info",
+					title: "Wait  !",
+					text: "카카오톡 링크 형식이 맞지 않습니다.",
+					iconColor: "#FFB300",
+					confirmButtonColor: "#FFB300"
+				});
+				linkInput.value = "";
+				linkInput.focus();
+				return false;
+			}else if(pw == "") {
 				Swal.fire({
 					icon: "info",
 					title: "Wait  !",

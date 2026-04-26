@@ -427,7 +427,7 @@ hr {
 						Swal.fire({
     						icon: "info",
     						title: "Wait  !",
-    						text: "공백 없는 2~10글자의 닉네임만 등록 가능합니다.(한/영)",
+    						text: "공백 없는 2~10글자의 닉네임만 등록 가능합니다.(한/영어 소문자)",
     						iconColor: "#FFB300",
     						confirmButtonColor: "#FFB300"
     					});
