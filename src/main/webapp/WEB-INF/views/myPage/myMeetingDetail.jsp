@@ -370,6 +370,19 @@ body {
 	             });
 	               return;
 	           }
+	          
+	          let regex = /^https:\/\/open\.kakao\.com\/o\/[a-zA-Z0-9]+$/;
+	          if(!regex.test(kakaolink)){
+				Swal.fire({
+					icon: "info",
+					title: "Wait  !",
+					text: "카카오톡 링크 형식이 맞지 않습니다.",
+					iconColor: "#FFB300",
+					confirmButtonColor: "#FFB300"
+				});
+				return;
+			   }
+	          
 	          if(kakaopw == "" || kakaopw == "<br>"){
 	              Swal.fire({
 	                icon: "info",

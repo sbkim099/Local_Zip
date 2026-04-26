@@ -299,14 +299,14 @@ a {
 						type="text" placeholder="이름을 입력해주세요. [필수]">
 				</div>
 				<div class="insertName">이름을 입력해주세요.</div>
-				<div class="x_name">공백 없는 2~10글자의 이름만 등록 가능합니다.(한/영)</div>
+				<div class="x_name">공백 없는 2~10글자의 이름만 등록 가능합니다.(한/영어 소문자)</div>
 				
 				<div class="form-row">
 					<label>·NICKNAME : </label> <input name="mem_nickname"
 						class="nickname" type="text" placeholder="닉네임을 입력해주세요. [필수]">
 				</div>
 				<div class="insertNickname">닉네임을 입력해주세요.</div>
-				<div class="x_nickname">공백 없는 2~10글자의 닉네임만 등록 가능합니다.(한/영)</div>
+				<div class="x_nickname">공백 없는 2~10글자의 닉네임만 등록 가능합니다.(한/영어 소문자)</div>
 				
 				<div class="form-row">
 					<label>· PHONE : </label> <input name="mem_phone" class="phone"
